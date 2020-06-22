@@ -26,13 +26,14 @@ $(function () {
     burger.on("click", function (event) {
         event.preventDefault();
         $(this).toggleClass("active");
-        $(".nav").toggleClass("active");
-        
+
         if (header.hasClass("fixed")) {
             header.removeClass("active");
         } else {
             header.addClass("active");
         }
+
+        $(".nav").toggleClass("active");
 
     });
 
