@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts/fonts.css">
     <script src="https://kit.fontawesome.com/6a89a444bb.js" crossorigin="anonymous"></script>
+    <link rel="manifest" href="/manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+            .register('sw.js')
+            .then(function () {
+                console.log("Service Worker registered!");
+            });
+        }
+    </script>
 </head>
 <body>
     <header class="header" id="header">
@@ -15,7 +25,7 @@
                 <nav class="nav">
                     <a href="" class="nav__link" data-scroll="#community">Home</a>
                     <a href="" class="nav__link" data-scroll="#start">photoapp</a>
-                    <div class="logo">
+                    <div class="logo" data-scroll="#intro">
                         <img src="images/logo.png" alt="">
                     </div>
                     <a href="" class="nav__link nav__link--third" data-scroll="#design">design</a>
@@ -32,7 +42,7 @@
             <div class="intro__inner">
                 <h1 class="intro__title">your life , a photo</h1>
                 <h2 class="intro__subtitle">print your life in a simple photo</h2>
-                <button type="button" class="intro__btn">get started</button>
+                <button type="button" class="intro__btn" data-start="#download">get started</button>
                 <div class="socials">
                     <a href="" class="socials__btn">
                         <i class="fab fa-twitter"></i>
@@ -59,7 +69,7 @@
                         magna aliqua. Ut <span>enim ad minim</span> veniam, quis <br>
                         nostrud exercitation ullamco laboris nisi <br>
                         ut aliquip ex ea commodo consequat.</p> </div>
-                    <button type="button" class="start__btn">get started</button>
+                    <button type="button" class="start__btn" data-start="#download">get started</button>
                 </div>
                 <div class="start__img">
                     <img class="hand__img" src="images/handphone.png" alt="">
@@ -70,8 +80,12 @@
     <section class="design" id="design">
         <div class="container">
             <div class="design__inner">
-                <div class="design__img">
-                    <img src="images/iphone.png" alt="" class="design__img">
+                <div class="design__image">
+                    <img src="images/iphone.png" alt="" class="design__img curry">
+                    <img src="images/iphonepink.png" alt="" class="design__img">
+                    <img src="images/iphonegreen.png" alt="" class="design__img">
+                    <img src="images/iphoneyellow.png" alt="" class="design__img">
+                    <img src="images/iphonered.png" alt="" class="design__img">
                 </div>
                 <div class="design__content">
                     <h3 class="design__title">DESIGN</h3>
@@ -84,12 +98,18 @@
                     </div>
                     <button type="button" class="start__btn start__btn--design">learn more</button>
                     <div class="slider">
-                        <div class="slider__date">01/05</div>
+                        <div class="slider__dates">
+                            <div class="slider__date curry">01/05</div>
+                            <div class="slider__date">02/05</div>
+                            <div class="slider__date">03/05</div>
+                            <div class="slider__date">04/05</div>
+                            <div class="slider__date">05/05</div>
+                        </div>
                         <div class="slider__arrows">
-                            <a class="arrows arrows--prev">
+                            <a class="arrows arrows--prev" id="sliderDPrev">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
-                            <a class="arrows arrows--next">
+                            <a class="arrows arrows--next" id="sliderDNext">
                                 <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
@@ -100,12 +120,12 @@
     </section>
     <section class="community" id="community">
        <div class="container">
-           <div class="slider slider--community">
+           <div class="slider slider--community" id="communitySlider">
                <div class="slider__arrows slider__arrows--community">
-                   <a class="arrows arrows--prev arrows--prev__community">
+                   <a class="arrows arrows--prev arrows--prev__community" id="sliderCPrev">
                        <i class="fas fa-chevron-left"></i>
                    </a>
-                   <a class="arrows arrows--next arrows--next__community">
+                   <a class="arrows arrows--next arrows--next__community" id="sliderCNext">
                        <i class="fas fa-chevron-right"></i>
                    </a>
                </div>
@@ -119,12 +139,16 @@
                            consectetur <br> adipiscing elit.</p> </div>
                    </div>
                </div>
-               <div class="community__image">
-                   <img src="images/car.png" alt="" class="community__img">
-               </div>
-               <div class="community__image community__image--slider">
-                   <img src="images/tree.png" alt="" class="community__img community__img--slider">
-               </div>
+                   <div class="community__image">
+                       <img src="images/car.png" alt="" class="community__img curry">
+                       <img src="images/ozero.jpg" alt="" class="community__img">
+                       <img src="images/voda.jpg" alt="" class="community__img">
+                   </div>
+                   <div class="community__image community__image--slider">
+                       <img src="images/tree.png" alt="" class="community__img community__img--slider curry">
+                       <img src="images/dom.jpg" alt="" class="community__img community__img--slider">
+                       <img src="images/vodopad.jpg" alt="" class="community__img community__img--slider">
+                   </div>
            </div>
        </div>
     </section>
@@ -132,8 +156,12 @@
         <div class="container">
             <div class="subscribe__inner">
                 <h3 class="subscribe__title">subscribe to us community</h3>
-                <form action="">
-                    <input class="subscribe__email" type="email" placeholder="your email">
+                <form action="mail.php" method="post">
+                    <input type="hidden" name="project_name" value="Название сайта">
+                    <input type="hidden" name="admin_email" value="guk2001y@gmail.com">
+                    <input type="hidden" name="form_subject" value="Лендинг оборудования - Заявка с верхней формы">
+
+                    <input class="subscribe__email" type="email" name="email" placeholder="your email" required>
                     <button class="subscribe__btn" type="submit">
                         <i class="fas fa-check"></i>
                     </button>
@@ -168,6 +196,18 @@
             </div>
         </div>
     </section>
+
+    <!--    Modal-->
+    <div class="modal" id="modal">
+        <div class="modal__window">
+            <button class="modal__exit" type="button" data-close="close">
+                <img src="images/close.svg" alt="" class="modal__close">
+            </button>
+            <h4 class="modal__title">Thank you!</h4>
+            <h5 class="modal__subtitle">Now you are with us</h5>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
@@ -187,6 +227,7 @@
             </div>
         </div>
     </footer>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="main.js"></script>
 </body>

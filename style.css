@@ -7,6 +7,9 @@ body {
     -webkit-font-smoothing: antialiased;
     background-color: #fff;
 }
+body.no-scroll {
+    overflow: hidden;
+}
 *, *:after, *:before {
     box-sizing: border-box;
 }
@@ -46,7 +49,7 @@ img {
 }
 .header.active {
     background-color: #16a085;
-    height: 85px;
+    height: 60px;
     width: 100%;
 }
 .nav {
@@ -56,11 +59,15 @@ img {
     margin-top: 40px;
     align-items: center;
 }
+.nav.lg {
+    margin-top: 15px;
+}
 .logo {
     display: block;
     height: auto;
     max-width: 100%;
     margin: 0 120px;
+    cursor: pointer;
 }
 .nav__link {
     display: inline-block;
@@ -117,7 +124,7 @@ img {
     position: absolute;
     background-color: #fff;
     width: 100%;
-    height: 5px;
+    height: 4px;
     top: 0;
     left: 0;
     right: 0;
@@ -132,7 +139,7 @@ img {
     content: "";
     display: block;
     width: 100%;
-    height: 5px;
+    height: 4px;
     position: absolute;
     left: 0;
     z-index: 1;
@@ -322,17 +329,20 @@ img {
     position: relative;
     margin: 145px auto 0;
 }
-.design__img {
+.design__image {
     width: 50%;
 }
-.design__img img {
+.design__img {
+    display: none;
     width: 340px;
     height: 410px;
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 1;
-
+}
+.design__img.curry {
+    display: block;
 }
 .design__content {
     width: 50%;
@@ -366,11 +376,15 @@ img {
     margin-bottom: 82px;
 }
 .slider__date {
+    display: none;
     font-size: 12px;
     color: #373737;
     font-weight: 700;
     letter-spacing: 1.8px;
     margin-bottom: 7px;
+}
+.slider__date.curry {
+    display: block;
 }
 .arrows {
     width: 16px;
@@ -427,6 +441,7 @@ img {
     letter-spacing: 2.4px;
     text-transform: uppercase;
     margin-bottom: 24px;
+    user-select: none;
 }
 .community__text {
     font-size: 10px;
@@ -436,6 +451,11 @@ img {
 .community__img {
     width: 370px;
     height: 244px;
+    display: none;
+    border-radius: 5px;
+}
+.community__img.curry {
+    display: block;
 }
 .community__image--slider {
     width: 100%;
@@ -446,6 +466,7 @@ img {
 }
 .community__logo {
     margin: 30px auto 30px;
+    user-select: none;
 }
 .slider__arrows--community {
     margin-bottom: 10px;
@@ -667,6 +688,61 @@ form {
     margin: 38px 0 38px auto;
 }
 
+/*Modal*/
+.modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(52, 202, 173, 0.6);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.modal.show {
+    display: flex;
+}
+.modal__window {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    background-color: #16a085;
+    box-shadow: 0 0 14px 0 rgba(0,0,0,0.75);
+}
+.modal__title {
+    font-size: 40px;
+    letter-spacing: 2.5px;
+    color: #fff;
+    text-align: center;
+    padding-top: 110px;
+}
+.modal__subtitle {
+    font-size: 16px;
+    letter-spacing: 2.5px;
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+}
+.modal__exit {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    border: 0;
+    font-size: 0;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s linear;
+}
+.modal__exit:hover {
+    transform: rotate(45deg);
+}
+
 /*Media*/
 @media (max-width: 1030px) {
     /*Start*/
@@ -719,8 +795,143 @@ form {
         margin-right: 30px;
     }
 }
+@media (max-width: 830px) and (orientation: landscape) {
+
+    /*Burger*/
+    .nav {
+        position: absolute;
+        display: none;
+        margin-top: 0;
+        top: 100%;
+        width: 100%;
+        left: 0;
+        background-color: #16a085;
+    }
+    .nav.active {
+        display: block;
+        border-top: 2px solid #fff;
+    }
+    .nav.lg {
+        margin-top: 0;
+    }
+    .nav__link {
+        display: block;
+        margin: 0;
+        padding: 18px 20px;
+        font-size: 12px;
+    }
+    .nav__link:first-child {
+        margin-left: 0;
+    }
+    .burger {
+        display: block;
+        top: 19px;
+        right: 12px;
+    }
+    .logo {
+        position: absolute;
+        left: 265px;
+        top: -60px;
+    }
+    .intro__inner {
+        margin-top: 20px;
+    }
+    .intro__title {
+        font-size: 28px;
+    }
+    .intro__subtitle {
+        font-size: 13px;
+    }
+    .header.fixed {
+        height: 60px;
+    }
+
+    /*Start*/
+    .hand__img {
+        width: 550px;
+        height: 270px;
+    }
+    .start__content {
+        margin-top: 60px;
+    }
+
+    /*Design*/
+    .design__img {
+        width: 290px;
+    }
+    .design__inner {
+        margin-top: 60px;
+    }
+    .design__text {
+        width: 340px;
+    }
+
+    /*Community*/
+    .slider--community {
+        padding-top: 10px;
+    }
+    .slider__arrows--community {
+        top: 14%;
+        width: 70%;
+    }
+    .arrows--prev__community {
+        margin-left: 210px;
+    }
+    .slider__arrows--community {
+        justify-content: space-between;
+        width: 70%;
+    }
+    .arrows--prev__community, .arrows--next__community {
+        font-size: 30px;
+    }
+    .community__image {
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    .community__img {
+        margin: 0 auto;
+    }
+    .community__inner {
+        padding-bottom: 30px;
+    }
+
+    /*Subscribe*/
+
+    .subscribe__title {
+        padding-top: 180px;
+    }
+    .subscribe__email {
+        margin-bottom: 180px;
+    }
+
+    /*Download*/
+    .download__title {
+        padding-top: 60px;
+        padding-bottom: 20px;
+    }
+    .download__text {
+        letter-spacing: 1.1px;
+        font-size: 11px;
+    }
+    .download_buttons {
+        padding-bottom: 70px;
+    }
+
+    /*Footer*/
+    .footer__nav__link, .footer__text {
+        font-size: 12px;
+    }
+    .slider__arrows {
+        margin-bottom: 40px;
+    }
+
+}
 @media (max-width: 770px) {
     /*Intro*/
+    .header.fixed {
+        height: 60px;
+    }
     .intro {
         min-height: 640px;
     }
@@ -738,6 +949,9 @@ form {
         display: block;
         border-top: 2px solid #fff;
     }
+    .nav.lg {
+        margin-top: 0;
+    }
     .nav__link {
         display: block;
         margin: 0;
@@ -748,11 +962,13 @@ form {
     }
     .burger {
         display: block;
+        top: 19px;
+        right: 12px;
     }
     .logo {
         position: absolute;
         left: 237px;
-        top: -71px;
+        top: -60px;
     }
     /*Start*/
 
@@ -831,6 +1047,73 @@ form {
         font-size: 11px;
     }
 }
+@media (max-width: 740px) and (orientation: landscape) {
+    /*Intro*/
+    .intro {
+        min-height: 410px;
+    }
+    .logo {
+        left: 215px;
+    }
+    .arrows--prev__community {
+        margin-left: 180px;
+    }
+    .slider__arrows {
+        margin-bottom: 40px;
+    }
+    .hand__img {
+        width: 420px;
+        height: 240px;
+    }
+}
+@media (max-width: 670px) and (orientation: landscape) {
+    /*Intro*/
+    .intro {
+        min-height: 360px;
+    }
+    .intro__title {
+        font-size: 25px;
+    }
+    .logo {
+        left: 195px;
+    }
+
+    /*Design*/
+    .design__text {
+        font-size: 10px;
+        width: 260px;
+    }
+    .design__img {
+        width: 270px;
+        height: 325px;
+    }
+
+    /*Community*/
+    .slider__arrows--community {
+        width: 74%;
+    }
+    .arrows--prev__community {
+        margin-left: 133px;
+    }
+
+    /*Download*/
+    .buttons__item {
+        margin-right: 0;
+        max-width: 320px;
+        margin-bottom: 20px;
+    }
+    .download_buttons {
+        padding-bottom: 30px;
+    }
+
+    /*Footer*/
+    .footer__nav__link {
+        font-size: 11px;
+    }
+    .footer__text {
+        font-size: 10px;
+    }
+}
 @media (max-width: 575px) {
     /*Intro*/
     .intro__title {
@@ -838,6 +1121,12 @@ form {
     }
     .intro__subtitle {
         font-size: 13px;
+    }
+    .nav__link {
+        font-size: 12px;
+    }
+    .logo {
+        left: 46px;
     }
 
     /*Start*/
@@ -862,8 +1151,15 @@ form {
     .design__inner {
         margin-top: 90px;
     }
+    .design__image {
+        display: block;
+        width: 100%;
+        order: 2;
+        max-width: 340px;
+        margin: 0 auto;
+    }
     .design__img {
-        display: none;
+        position: relative;
     }
     .design__content {
         width: 100%;
@@ -882,7 +1178,11 @@ form {
         font-size: 21px;
     }
     .slider__arrows {
+        margin-bottom: 10px;
         justify-content: center;
+    }
+    .start__btn--design {
+        margin-bottom: 35px;
     }
 
     /*Community*/
@@ -937,6 +1237,42 @@ form {
        margin: 35px auto;
     }
 }
+@media (max-width: 570px) and (orientation: landscape) {
+    .intro {
+        min-height: 320px;
+    }
+    .intro__title {
+        font-size: 21px;
+    }
+    .intro__subtitle {
+        font-size: 11px;
+        margin-bottom: 20px;
+    }
+    .intro__inner {
+        margin-top: 5px;
+    }
+    .logo {
+        left: 145px;
+    }
+    .design__text {
+        width: 340px;
+    }
+    .design__image {
+        max-width: 270px;
+    }
+    .slider__arrows {
+        margin-bottom: 10px;
+    }
+    .start__btn--design {
+        margin-bottom: 25px;
+    }
+    .arrows--prev__community {
+        margin-left: 105px;
+    }
+    .download__title {
+        padding-bottom: 0;
+    }
+}
 @media (max-width: 420px) {
     /*Intro*/
     .intro__title {
@@ -948,6 +1284,9 @@ form {
     }
     .intro__inner {
         margin-top: 160px;
+    }
+    .logo {
+        left: 68px;
     }
 
     /*Start*/
@@ -972,9 +1311,10 @@ form {
     .design__text {
         max-width: 320px;
     }
-    .slider__arrows {
-        margin-bottom: 70px;
+    .start__btn--design {
+        margin-bottom: 35px;
     }
+
 
     /*Community*/
     .slider--community {
@@ -1035,8 +1375,16 @@ form {
         margin: 25px auto;
     }
 }
-@media (max-width: 350px) {
+@media (max-width: 380px) {
+    .logo {
+        left: 44px;
+    }
+}
+@media (max-width: 360px) {
     /*Intro*/
+    .intro {
+        min-height: 565px;
+    }
     .intro__title {
         font-size: 28px;
     }
@@ -1044,7 +1392,10 @@ form {
         font-size: 11px;
     }
     .intro__inner {
-        margin-top: 130px;
+        margin-top: 125px;
+    }
+    .logo {
+        left: 35px;
     }
 
     /*Start*/
@@ -1099,4 +1450,16 @@ form {
         padding-bottom: 25px;
     }
 }
+@media (max-width: 330px) {
+    .logo {
+        left: 17px;
+    }
+    .design__img {
+        height: 360px;
+    }
+}
+
+
+
+
 

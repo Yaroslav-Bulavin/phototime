@@ -1,0 +1,23 @@
+{
+  "name": "yes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yaroslav-Bulavin/phototime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yaroslav-Bulavin/phototime/issues"
+  },
+  "homepage": "https://github.com/Yaroslav-Bulavin/phototime#readme",
+  "dependencies": {
+    "http-server": "^0.12.3",
+    "jquery": "^3.5.1"
+  }
+}
